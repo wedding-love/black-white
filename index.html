@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -836,6 +837,7 @@
 
 <script>
     (function() {
+        // Первый экран
         const firstObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -850,9 +852,10 @@
         }, { threshold: 0.1 });
         firstObserver.observe(document.getElementById('firstScreen'));
 
+        // Второй экран (приглашение)
         const secondContainer = document.querySelector('.invitation-container');
         if (secondContainer) {
-            new IntersectionObserver((entries) => {
+            const secondObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         document.querySelector('.title')?.classList.add('visible');
@@ -863,32 +866,38 @@
                         setTimeout(() => document.querySelectorAll('.dot').forEach(el => el.classList.add('visible')), 1200);
                         setTimeout(() => document.querySelector('.line-bottom')?.classList.add('visible'), 1500);
                         setTimeout(() => document.querySelector('.calendar-section')?.classList.add('visible'), 2000);
-                        observer.disconnect();
+                        secondObserver.disconnect();
                     }
                 });
-            }, { threshold: 0.2 }).observe(secondContainer);
+            }, { threshold: 0.2 });
+            secondObserver.observe(secondContainer);
         }
 
+        // Локация
         const locSec = document.getElementById('locationSection');
         if (locSec) {
-            new IntersectionObserver((entries) => {
-                entries.forEach(e => { if(e.isIntersecting) locSec.classList.add('visible'); observer.disconnect(); });
-            }, { threshold: 0.3 }).observe(locSec);
+            const locObserver = new IntersectionObserver((entries) => {
+                entries.forEach(e => { if(e.isIntersecting) locSec.classList.add('visible'); locObserver.disconnect(); });
+            }, { threshold: 0.3 });
+            locObserver.observe(locSec);
         }
         
+        // Тайминг
         const timeline = document.querySelector('.timeline-container');
         if (timeline) {
-            new IntersectionObserver((entries) => {
+            const timelineObserver = new IntersectionObserver((entries) => {
                 entries.forEach(e => {
                     if(e.isIntersecting) {
                         timeline.classList.add('visible');
                         document.querySelectorAll('.timeline-item').forEach((item,i) => setTimeout(() => item.classList.add('visible'), [300,800,1300,1800][i]));
-                        observer.disconnect();
+                        timelineObserver.disconnect();
                     }
                 });
-            }, { threshold: 0.5 }).observe(timeline);
+            }, { threshold: 0.5 });
+            timelineObserver.observe(timeline);
         }
 
+        // Дресс-код
         const dressScreen = document.getElementById('dresscodeScreen');
         if (dressScreen) {
             const drObs = new IntersectionObserver((e) => {
@@ -905,6 +914,7 @@
             drObs.observe(dressScreen);
         }
         
+        // Карточки в moodboard
         document.querySelectorAll('.look-card').forEach((card,i) => {
             const cardObs = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -917,6 +927,7 @@
             cardObs.observe(card);
         });
         
+        // Пожелания
         const wishesContainer = document.querySelector('.wishes-container');
         if (wishesContainer) {
             const topObs = new IntersectionObserver((e) => {
@@ -968,7 +979,7 @@
             }
         }
 
-        // Анимация для анкеты гостя
+        // Анкета гостя
         const rsvpScreen = document.getElementById('rsvpScreen');
         if (rsvpScreen) {
             const rsvpObserver = new IntersectionObserver((entries) => {
@@ -982,7 +993,7 @@
             rsvpObserver.observe(rsvpScreen);
         }
 
-        // Анимация для блока контактов
+        // Контакты
         const contactsScreen = document.getElementById('contactsScreen');
         if (contactsScreen) {
             const contactsObserver = new IntersectionObserver((entries) => {
@@ -996,10 +1007,12 @@
             contactsObserver.observe(contactsScreen);
         }
         
+        // Кнопка прокрутки
         document.getElementById('scrollBtn')?.addEventListener('click', () => {
             document.getElementById('secondScreen')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
         
+        // Слайдер
         const slides = document.querySelectorAll('.slide-text');
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
@@ -1014,6 +1027,7 @@
             nextBtn.onclick = () => showSlide(currentSlide+1);
         }
 
+        // Отправка формы
         const form = document.getElementById('guestForm');
         const messageDiv = document.getElementById('formMessage');
         if (form) {
@@ -1032,6 +1046,13 @@
                     messageDiv.style.display = 'none';
                     messageDiv.style.opacity = '0';
                 }, 4000);
+                // Здесь можно добавить реальную отправку данных
+                console.log('Форма отправлена:', {
+                    name: name,
+                    attendance: document.querySelector('input[name="attendance"]:checked')?.value,
+                    count: document.getElementById('guestCount').value,
+                    wishes: document.getElementById('guestWishes').value
+                });
             });
         }
     })();
