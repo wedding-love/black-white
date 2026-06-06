@@ -42,7 +42,7 @@
         html, body {
             width: 100%;
             overflow-x: hidden;
-            scroll-behavior: smooth;
+            /* Убираем scroll-behavior: smooth - он вызывает залипание */
         }
 
         body {
@@ -70,7 +70,7 @@
             background-position: center 30%;
             opacity: 0;
             filter: brightness(0.85) contrast(1.02);
-            transition: opacity 3.5s ease-out;
+            transition: opacity 1.5s ease-out;
             z-index: 1;
         }
 
@@ -106,7 +106,7 @@
             margin-top: 0.5vh;
             opacity: 0;
             transform: translateY(30px);
-            transition: opacity 2.5s cubic-bezier(0.2,0.9,0.3,1.1), transform 2.5s cubic-bezier(0.2,0.9,0.3,1.1);
+            transition: opacity 0.8s ease, transform 0.8s ease;
         }
         .wedding-script.visible { opacity: 1; transform: translateY(0); }
 
@@ -128,8 +128,8 @@
             opacity: 0;
             line-height: 1.2;
         }
-        .artem-name { transform: translateX(-35px); transition: opacity 2s cubic-bezier(0.2,0.9,0.3,1.1), transform 2s cubic-bezier(0.2,0.9,0.3,1.1); }
-        .ekaterina-name { margin-left: 128px; transform: translateX(35px); transition: opacity 2s cubic-bezier(0.2,0.9,0.3,1.1), transform 2s cubic-bezier(0.2,0.9,0.3,1.1); }
+        .artem-name { transform: translateX(-35px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .ekaterina-name { margin-left: 128px; transform: translateX(35px); transition: opacity 0.8s ease, transform 0.8s ease; }
         .artem-name.visible, .ekaterina-name.visible { opacity: 1; transform: translateX(0); }
 
         .delicate-ampersand {
@@ -144,7 +144,7 @@
             pointer-events: none;
             z-index: 0;
             opacity: 0;
-            transition: opacity 3s ease, transform 3s ease;
+            transition: opacity 1s ease, transform 1s ease;
         }
         .delicate-ampersand.visible { opacity: 0.25; transform: translateY(-50%) scale(1); }
 
@@ -187,8 +187,8 @@
             color: #1a1a1a;
             margin-bottom: 20px;
             opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
         .save-the-date {
             font-family: 'Pinyon Script', cursive;
@@ -196,8 +196,8 @@
             color: #1a1a1a;
             margin-bottom: 25px;
             opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
         .description-text {
             font-family: 'Montserrat', sans-serif;
@@ -209,10 +209,10 @@
             max-width: 320px;
             margin: 0 auto 35px;
             opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
-        .line { width: 1px; background: #1a1a1a; height: 60px; margin: 0 auto; opacity: 0; transform: scaleY(0); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .line { width: 1px; background: #1a1a1a; height: 60px; margin: 0 auto; opacity: 0; transform: scaleY(0); transition: opacity 0.6s ease, transform 0.6s ease; }
         .line-top { margin-bottom: 30px; transform-origin: top; }
         .line-bottom { margin-top: 30px; margin-bottom: 50px; transform-origin: bottom; }
         .date-block { display: flex; flex-direction: row; justify-content: center; align-items: baseline; gap: 5px; }
@@ -224,10 +224,10 @@
             line-height: 0.9;
             opacity: 0;
         }
-        .from-left-1, .from-left-2 { transform: translateX(-100px); transition: opacity 0.8s ease, transform 0.8s ease; }
-        .from-right { transform: translateX(100px); transition: opacity 0.8s ease, transform 0.8s ease; }
-        .dot { font-size: 1.3rem; color: #1a1a1a; margin: 0 3px; opacity: 0; transition: opacity 0.6s ease; }
-        .calendar-section { max-width: 280px; margin: 0 auto; opacity: 0; transform: translateY(120px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .from-left-1, .from-left-2 { transform: translateX(-60px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .from-right { transform: translateX(60px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .dot { font-size: 1.3rem; color: #1a1a1a; margin: 0 3px; opacity: 0; transition: opacity 0.4s ease; }
+        .calendar-section { max-width: 280px; margin: 0 auto; opacity: 0; transform: translateY(60px); transition: opacity 0.8s ease, transform 0.8s ease; }
         .calendar-month { font-family: 'Bodoni Moda', 'Playfair Display', serif; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 4px; margin-bottom: 20px; }
         .calendar-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 12px 6px; }
         .weekday { font-family: 'Montserrat', sans-serif; font-size: 0.7rem; font-weight: 400; color: #999; text-transform: lowercase; }
@@ -261,7 +261,7 @@
             background-size: cover;
             background-position: center;
             opacity: 0;
-            transition: opacity 0.8s ease 0.3s;
+            transition: opacity 0.6s ease 0.2s;
             z-index: 1;
         }
         .location-card {
@@ -272,7 +272,7 @@
             text-align: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.03);
         }
-        .icon-scene { width: 70px; height: 70px; margin: 0 auto 20px; opacity: 0; transform: scale(0.8); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .icon-scene { width: 70px; height: 70px; margin: 0 auto 20px; opacity: 0; transform: scale(0.8); transition: opacity 0.6s ease, transform 0.6s ease; }
         .location-title {
             font-family: 'Lighthaus', 'Quicksand', sans-serif;
             font-weight: 400;
@@ -281,8 +281,8 @@
             letter-spacing: 2px;
             margin-bottom: 10px;
             opacity: 0;
-            transform: translateX(-60px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+            transform: translateX(-40px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
         .save-the-place {
             font-family: 'Pinyon Script', cursive;
@@ -290,9 +290,9 @@
             font-weight: 400;
             margin-bottom: 20px;
             display: inline-block;
-            transform: skewX(-3deg) translateX(60px);
+            transform: skewX(-3deg) translateX(40px);
             opacity: 0;
-            transition: opacity 0.8s ease, transform 0.8s ease;
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
         .venue-name {
             font-family: 'Montserrat', sans-serif;
@@ -304,8 +304,8 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             opacity: 0;
-            transform: translateY(55px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+            transform: translateY(35px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
         .btn-maps {
             display: inline-block;
@@ -319,8 +319,8 @@
             padding: 12px 30px;
             text-transform: uppercase;
             opacity: 0;
-            transform: translateY(55px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+            transform: translateY(35px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
         .btn-maps:hover { background: #333; }
         .location-section.visible .location-bg { opacity: 1; }
@@ -331,7 +331,7 @@
         .location-section.visible .btn-maps { opacity: 1; transform: translateY(0); }
 
         .timeline-screen { background: #fff; padding: 50px 20px 60px; }
-        .timeline-container { max-width: 400px; margin: 0 auto; text-align: center; opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .timeline-container { max-width: 400px; margin: 0 auto; text-align: center; opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
         .timeline-container.visible { opacity: 1; transform: translateY(0); }
         .timeline-main-title {
             font-family: 'Lighthaus', 'Quicksand', sans-serif;
@@ -344,9 +344,9 @@
         .timeline-subtitle { font-family: 'Pinyon Script', cursive; font-size: clamp(1.3rem, 3.5vw, 1.6rem); margin-bottom: 25px; }
         .timeline-middle-line { width: 1px; background: #b5b5b5; margin: 0 auto 30px auto; height: 50px; }
         .timeline-list { margin: 35px 0 25px; }
-        .timeline-item { margin: 30px 0; opacity: 0; transition: opacity 0.6s ease, transform 0.6s ease; }
-        .timeline-item.slide-left { transform: translateX(-40px); }
-        .timeline-item.slide-right { transform: translateX(40px); }
+        .timeline-item { margin: 30px 0; opacity: 0; transition: opacity 0.5s ease, transform 0.5s ease; }
+        .timeline-item.slide-left { transform: translateX(-30px); }
+        .timeline-item.slide-right { transform: translateX(30px); }
         .timeline-item.visible { opacity: 1; transform: translateX(0); }
         .timeline-item .time { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 500; margin-bottom: 6px; }
         .timeline-item .timeline-desc { font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 400; color: #333; max-width: 300px; margin: 0 auto; }
@@ -363,8 +363,8 @@
             color: #121212;
             margin-bottom: 24px;
             opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
         .dresscode-description {
             font-family: 'Montserrat', sans-serif;
@@ -375,8 +375,8 @@
             max-width: 340px;
             margin: 0 auto 30px auto;
             opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
         .section-subtitle {
             font-family: 'Pinyon Script', cursive;
@@ -386,10 +386,10 @@
             margin-bottom: 35px;
             letter-spacing: 1px;
             opacity: 0;
-            transition: opacity 0.8s ease, transform 0.8s ease;
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
-        .section-subtitle.animate-left { transform: translateX(-40px); }
-        .section-subtitle.animate-right { transform: translateX(40px); }
+        .section-subtitle.animate-left { transform: translateX(-30px); }
+        .section-subtitle.animate-right { transform: translateX(30px); }
         .dresscode-main-title.visible, .dresscode-description.visible, .section-subtitle.visible { opacity: 1; transform: translate(0); }
         .color-palette { display: block; margin: 0 auto 35px auto; font-size: 0; }
         .color-circle { display: inline-block; width: 32px; height: 32px; border-radius: 50%; margin: 0 6px; box-shadow: inset 0 0 1px rgba(0,0,0,0.1); }
@@ -409,7 +409,7 @@
             border-radius: 2px;
             opacity: 0;
             transform: scale(0.95);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+            transition: opacity 0.5s ease, transform 0.5s ease;
         }
         .look-card.visible-card { opacity: 1; transform: scale(1); }
         .ladies .card-main { width: 48%; height: 300px; left: 26%; top: 0; z-index: 10; background-image: url('2.jpg'); }
@@ -426,17 +426,17 @@
 
         .wishes-screen { background: #ffffff; padding: 60px 20px 80px; }
         .wishes-container { max-width: 450px; margin: 0 auto; text-align: center; }
-        .wishes-container .anim-element { opacity: 0; transition: opacity 0.8s ease, transform 0.8s ease; }
+        .wishes-container .anim-element { opacity: 0; transition: opacity 0.6s ease, transform 0.6s ease; }
         .wishes-container .anim-element.visible { opacity: 1; transform: translate(0) !important; }
-        .wishes-main-title { font-family: 'Lighthaus', 'Quicksand', sans-serif; font-weight: 400; font-size: 42px; text-transform: uppercase; letter-spacing: 4px; margin-bottom: 10px; transform: translateY(40px); }
-        .wishes-handwritten-subtitle { font-family: 'Pinyon Script', cursive; font-size: 34px; margin-bottom: 35px; transform: translateY(40px); }
-        .slider-wrapper { position: relative; display: flex; align-items: center; justify-content: center; min-height: 120px; margin-bottom: 50px; padding: 0 40px; transform: translateY(40px); }
+        .wishes-main-title { font-family: 'Lighthaus', 'Quicksand', sans-serif; font-weight: 400; font-size: 42px; text-transform: uppercase; letter-spacing: 4px; margin-bottom: 10px; transform: translateY(30px); }
+        .wishes-handwritten-subtitle { font-family: 'Pinyon Script', cursive; font-size: 34px; margin-bottom: 35px; transform: translateY(30px); }
+        .slider-wrapper { position: relative; display: flex; align-items: center; justify-content: center; min-height: 120px; margin-bottom: 50px; padding: 0 40px; transform: translateY(30px); }
         .slider-content { width: 100%; position: relative; }
         .slide-text {
             font-family: 'Montserrat', sans-serif;
             font-size: 12px; font-weight: 300; line-height: 1.8; color: #555;
             position: absolute; top: 50%; left: 0; right: 0; transform: translateY(-50%);
-            opacity: 0; visibility: hidden; transition: opacity 1.2s ease, visibility 1.2s ease;
+            opacity: 0; visibility: hidden; transition: opacity 0.8s ease, visibility 0.8s ease;
         }
         .slide-text.active { opacity: 1; visibility: visible; position: relative; transform: none; }
         .slider-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; padding: 10px; z-index: 10; }
@@ -445,13 +445,13 @@
         .slider-arrow svg { width: 24px; height: 16px; fill: none; stroke: #121212; stroke-width: 1px; }
         .wishes-vertical-divider { width: 1px; height: 90px; background-color: #b5b5b5; margin: 0 auto 45px auto; transform: scaleY(0); }
         .wishes-vertical-divider.visible { transform: scaleY(1); }
-        .pre-closing { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 300; line-height: 1.6; color: #121212; margin-bottom: 45px; transform: translateY(40px); }
+        .pre-closing { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 300; line-height: 1.6; color: #121212; margin-bottom: 45px; transform: translateY(30px); }
         .wishes-names-block { display: flex; flex-direction: column; align-items: center; margin-bottom: 55px; }
         .name-item { font-family: 'Lighthaus', 'Quicksand', sans-serif; font-weight: 300; font-size: 46px; text-transform: uppercase; letter-spacing: 5px; line-height: 1.1; color: #121212; }
-        .name-item.anim-slide-left { transform: translateX(-40px); }
-        .ampersand-item { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 38px; font-weight: 400; color: #121212; margin: 12px 0; transform: translateX(-40px); }
-        .name-item.anim-slide-right { transform: translateX(40px); }
-        .couple-photo-container { width: 100%; padding: 0 10px; opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .name-item.anim-slide-left { transform: translateX(-30px); }
+        .ampersand-item { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 38px; font-weight: 400; color: #121212; margin: 12px 0; transform: translateX(-30px); }
+        .name-item.anim-slide-right { transform: translateX(30px); }
+        .couple-photo-container { width: 100%; padding: 0 10px; opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
         .couple-photo-container.visible { opacity: 1; transform: translateY(0); }
         .couple-photo { width: 100%; aspect-ratio: 3 / 2; background-image: url('пара.jpg'); background-size: cover; background-position: center; background-color: #f5f5f5; }
 
@@ -459,8 +459,8 @@
             background: #ffffff;
             padding: 60px 20px;
             opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
         .rsvp-screen.visible { opacity: 1; transform: translateY(0); }
         .rsvp-container {
@@ -574,8 +574,8 @@
             background: #ffffff;
             padding: 60px 20px 80px;
             opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
         .contacts-screen.visible { opacity: 1; transform: translateY(0); }
         .contacts-container {
@@ -824,88 +824,71 @@
 
 <script>
     (function() {
-        // Упрощённый единый observer для всех анимаций
-        // Он просто добавляет класс visible когда элемент попадает в viewport
-        // и НЕ удаляет его, что предотвращает "залипание"
+        // Анимация первого экрана - запускаем сразу
+        setTimeout(() => document.getElementById('photoBg')?.classList.add('visible'), 100);
+        setTimeout(() => document.getElementById('weddingScript')?.classList.add('visible'), 300);
+        setTimeout(() => document.getElementById('artemName')?.classList.add('visible'), 600);
+        setTimeout(() => document.getElementById('ekaterinaName')?.classList.add('visible'), 900);
+        setTimeout(() => document.getElementById('ampersand')?.classList.add('visible'), 1200);
         
-        const animatedElements = [
-            { el: document.getElementById('photoBg'), delay: 100 },
-            { el: document.getElementById('weddingScript'), delay: 800 },
-            { el: document.getElementById('artemName'), delay: 1400 },
-            { el: document.getElementById('ekaterinaName'), delay: 1800 },
-            { el: document.getElementById('ampersand'), delay: 2200 }
-        ];
-        
-        // Запускаем анимацию первого экрана сразу при загрузке
-        animatedElements.forEach(item => {
-            if (item.el) {
-                setTimeout(() => item.el.classList.add('visible'), item.delay);
-            }
-        });
-        
-        // Функция для наблюдения за элементами
-        function observeElement(element, className = 'visible', threshold = 0.2, once = true) {
-            if (!element) return null;
+        // Упрощённая функция наблюдения за элементами
+        function observeOnScroll(element, className = 'visible', threshold = 0.2) {
+            if (!element) return;
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         element.classList.add(className);
-                        if (once) observer.disconnect();
+                        observer.unobserve(element);
                     }
                 });
             }, { threshold: threshold });
             observer.observe(element);
-            return observer;
         }
         
         // Наблюдаем за всеми секциями и элементами
         
-        // Второй экран - элементы по отдельности
-        observeElement(document.querySelector('.title'), 'visible', 0.2);
-        observeElement(document.querySelector('.save-the-date'), 'visible', 0.2);
-        observeElement(document.querySelector('.description-text'), 'visible', 0.2);
-        observeElement(document.querySelector('.line-top'), 'visible', 0.2);
-        observeElement(document.querySelector('.line-bottom'), 'visible', 0.2);
-        observeElement(document.querySelector('.calendar-section'), 'visible', 0.2);
+        // Второй экран - каждый элемент отдельно
+        observeOnScroll(document.querySelector('.title'), 'visible', 0.2);
+        observeOnScroll(document.querySelector('.save-the-date'), 'visible', 0.2);
+        observeOnScroll(document.querySelector('.description-text'), 'visible', 0.2);
+        observeOnScroll(document.querySelector('.line-top'), 'visible', 0.2);
+        observeOnScroll(document.querySelector('.line-bottom'), 'visible', 0.2);
+        observeOnScroll(document.querySelector('.calendar-section'), 'visible', 0.2);
         
         // Дата числа
-        document.querySelectorAll('.date-number').forEach(el => observeElement(el, 'visible', 0.2));
-        document.querySelectorAll('.dot').forEach(el => observeElement(el, 'visible', 0.2));
+        document.querySelectorAll('.date-number').forEach(el => observeOnScroll(el, 'visible', 0.2));
+        document.querySelectorAll('.dot').forEach(el => observeOnScroll(el, 'visible', 0.2));
         
         // Локация
-        observeElement(document.getElementById('locationSection'), 'visible', 0.3);
+        observeOnScroll(document.getElementById('locationSection'), 'visible', 0.3);
         
         // Тайминг
-        observeElement(document.querySelector('.timeline-container'), 'visible', 0.4);
-        document.querySelectorAll('.timeline-item').forEach((el, i) => {
-            setTimeout(() => observeElement(el, 'visible', 0.1), i * 300);
-        });
+        observeOnScroll(document.querySelector('.timeline-container'), 'visible', 0.3);
+        document.querySelectorAll('.timeline-item').forEach(el => observeOnScroll(el, 'visible', 0.2));
         
         // Дресс-код заголовки
-        observeElement(document.getElementById('dresscodeMainTitle'), 'visible', 0.3);
-        observeElement(document.getElementById('dresscodeDescription'), 'visible', 0.3);
-        observeElement(document.getElementById('ladiesSubtitle'), 'visible', 0.3);
-        observeElement(document.getElementById('gentsSubtitle'), 'visible', 0.3);
+        observeOnScroll(document.getElementById('dresscodeMainTitle'), 'visible', 0.3);
+        observeOnScroll(document.getElementById('dresscodeDescription'), 'visible', 0.3);
+        observeOnScroll(document.getElementById('ladiesSubtitle'), 'visible', 0.3);
+        observeOnScroll(document.getElementById('gentsSubtitle'), 'visible', 0.3);
         
-        // Карточки moodboard - каждая со своей задержкой
-        document.querySelectorAll('.look-card').forEach((card, i) => {
-            setTimeout(() => observeElement(card, 'visible-card', 0.2), i * 100);
-        });
+        // Карточки moodboard
+        document.querySelectorAll('.look-card').forEach(card => observeOnScroll(card, 'visible-card', 0.2));
         
         // Пожелания - все элементы с классом anim-element
-        document.querySelectorAll('.anim-element').forEach(el => observeElement(el, 'visible', 0.3));
-        observeElement(document.getElementById('finalPhoto'), 'visible', 0.3);
+        document.querySelectorAll('.anim-element').forEach(el => observeOnScroll(el, 'visible', 0.3));
+        observeOnScroll(document.getElementById('finalPhoto'), 'visible', 0.3);
         
         // Анкета и контакты
-        observeElement(document.getElementById('rsvpScreen'), 'visible', 0.2);
-        observeElement(document.getElementById('contactsScreen'), 'visible', 0.2);
+        observeOnScroll(document.getElementById('rsvpScreen'), 'visible', 0.2);
+        observeOnScroll(document.getElementById('contactsScreen'), 'visible', 0.2);
         
-        // Кнопка прокрутки вниз
+        // Кнопка прокрутки вниз - используем простой скролл без smooth для отзывчивости
         document.getElementById('scrollBtn')?.addEventListener('click', (e) => {
             e.preventDefault();
             const secondScreen = document.getElementById('secondScreen');
             if (secondScreen) {
-                secondScreen.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                secondScreen.scrollIntoView({ behavior: 'smooth' });
             }
         });
         
