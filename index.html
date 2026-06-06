@@ -9,30 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@100;200;300;400;500;700;800&family=Parisienne&family=Pinyon+Script&display=swap" rel="stylesheet">
     
     <style>
-        @font-face {
-            font-family: 'Lighthaus';
-            src: url('Lighthaus.otf') format('opentype');
-            font-weight: 300;
-            font-style: normal;
-            font-display: swap;
-        }
-        
-        @font-face {
-            font-family: 'Lighthaus';
-            src: url('Lighthaus.otf') format('opentype');
-            font-weight: 400;
-            font-style: normal;
-            font-display: swap;
-        }
-        
-        @font-face {
-            font-family: 'Lighthaus';
-            src: url('Lighthaus.otf') format('opentype');
-            font-weight: 500;
-            font-style: normal;
-            font-display: swap;
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -42,7 +18,6 @@
         html, body {
             width: 100%;
             overflow-x: hidden;
-            /* Убираем scroll-behavior: smooth - он вызывает залипание */
         }
 
         body {
@@ -50,6 +25,7 @@
             background-color: #ffffff;
         }
 
+        /* Первый экран */
         .first-screen {
             position: relative;
             width: 100%;
@@ -75,6 +51,7 @@
         }
 
         .photo-bg.visible { opacity: 1; }
+        
         .soft-veil {
             position: absolute;
             top: 0;
@@ -173,48 +150,37 @@
             transition: background 0.2s ease, transform 0.2s ease;
             border: none;
         }
-        .scroll-down:hover { background: white; transform: translateX(-50%) scale(1.02); box-shadow: 0 6px 16px rgba(0,0,0,0.2); }
+        .scroll-down:hover { background: white; transform: translateX(-50%) scale(1.02); }
         .arrow-icon-svg { margin-left: 8px; width: 11px; height: 11px; stroke: #1a1a1a; }
 
+        /* Второй экран */
         .second-screen { width: 100%; background: #fff; padding: 60px 20px; }
         .invitation-container { text-align: center; max-width: 400px; margin: 0 auto; }
-        .title {
-            font-family: 'Lighthaus', 'Quicksand', sans-serif;
-            font-weight: 400;
-            font-size: clamp(2rem, 4.5vw, 2.5rem);
-            letter-spacing: 2px;
-            line-height: 1.2;
-            color: #1a1a1a;
-            margin-bottom: 20px;
+        
+        /* Базовые стили для анимации - элементы скрыты изначально */
+        .title, .save-the-date, .description-text, .line-top, .line-bottom, 
+        .date-number, .dot, .calendar-section {
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
         }
-        .save-the-date {
-            font-family: 'Pinyon Script', cursive;
-            font-size: clamp(2rem, 4.5vw, 2.4rem);
-            color: #1a1a1a;
-            margin-bottom: 25px;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-        .description-text {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.85rem;
-            line-height: 1.5;
-            color: #555;
-            font-weight: 300;
-            letter-spacing: 0.5px;
-            max-width: 320px;
-            margin: 0 auto 35px;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-        .line { width: 1px; background: #1a1a1a; height: 60px; margin: 0 auto; opacity: 0; transform: scaleY(0); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .title { transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .save-the-date { transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .description-text { transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .line { width: 1px; background: #1a1a1a; height: 60px; margin: 0 auto; transform: scaleY(0); transition: opacity 0.6s ease, transform 0.6s ease; }
         .line-top { margin-bottom: 30px; transform-origin: top; }
         .line-bottom { margin-top: 30px; margin-bottom: 50px; transform-origin: bottom; }
+        .date-number { transition: opacity 0.6s ease, transform 0.6s ease; }
+        .from-left-1, .from-left-2 { transform: translateX(-60px); }
+        .from-right { transform: translateX(60px); }
+        .dot { font-size: 1.3rem; color: #1a1a1a; margin: 0 3px; transition: opacity 0.4s ease; }
+        .calendar-section { transform: translateY(60px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        
+        /* Активные состояния */
+        .title.visible, .save-the-date.visible, .description-text.visible { opacity: 1; transform: translateY(0); }
+        .line.visible { opacity: 0.6; transform: scaleY(1); }
+        .date-number.visible { opacity: 1; transform: translateX(0); }
+        .dot.visible { opacity: 1; }
+        .calendar-section.visible { opacity: 1; transform: translateY(0); }
+
         .date-block { display: flex; flex-direction: row; justify-content: center; align-items: baseline; gap: 5px; }
         .date-number {
             font-family: 'Bodoni Moda', 'Playfair Display', serif;
@@ -222,12 +188,7 @@
             font-weight: 400;
             color: #1a1a1a;
             line-height: 0.9;
-            opacity: 0;
         }
-        .from-left-1, .from-left-2 { transform: translateX(-60px); transition: opacity 0.6s ease, transform 0.6s ease; }
-        .from-right { transform: translateX(60px); transition: opacity 0.6s ease, transform 0.6s ease; }
-        .dot { font-size: 1.3rem; color: #1a1a1a; margin: 0 3px; opacity: 0; transition: opacity 0.4s ease; }
-        .calendar-section { max-width: 280px; margin: 0 auto; opacity: 0; transform: translateY(60px); transition: opacity 0.8s ease, transform 0.8s ease; }
         .calendar-month { font-family: 'Bodoni Moda', 'Playfair Display', serif; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 4px; margin-bottom: 20px; }
         .calendar-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 12px 6px; }
         .weekday { font-family: 'Montserrat', sans-serif; font-size: 0.7rem; font-weight: 400; color: #999; text-transform: lowercase; }
@@ -235,12 +196,8 @@
         .empty-day { visibility: hidden; }
         .heart-svg { position: absolute; width: 38px; height: 38px; top: 50%; left: 50%; transform: translate(-50%,-46%); pointer-events: none; }
         .heart-path { stroke: #1a1a1a; stroke-width: 1.1; fill: none; }
-        .title.visible, .save-the-date.visible, .description-text.visible { opacity: 1; transform: translateY(0); }
-        .line.visible { opacity: 0.6; transform: scaleY(1); }
-        .date-number.visible { opacity: 1; transform: translateX(0); }
-        .dot.visible { opacity: 1; }
-        .calendar-section.visible { opacity: 1; transform: translateY(0); }
 
+        /* Локация */
         .location-section {
             position: relative;
             max-width: 450px;
@@ -330,6 +287,7 @@
         .location-section.visible .venue-name { opacity: 1; transform: translateY(0); }
         .location-section.visible .btn-maps { opacity: 1; transform: translateY(0); }
 
+        /* Тайминг */
         .timeline-screen { background: #fff; padding: 50px 20px 60px; }
         .timeline-container { max-width: 400px; margin: 0 auto; text-align: center; opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
         .timeline-container.visible { opacity: 1; transform: translateY(0); }
@@ -351,16 +309,15 @@
         .timeline-item .time { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 500; margin-bottom: 6px; }
         .timeline-item .timeline-desc { font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 400; color: #333; max-width: 300px; margin: 0 auto; }
 
+        /* Дресс-код */
         .dresscode-screen { background: #fff; padding: 40px 16px 60px; }
-        .dresscode-container { width: 100%; max-width: 450px; margin: 0 auto; text-align: center; position: relative; }
+        .dresscode-container { width: 100%; max-width: 450px; margin: 0 auto; text-align: center; }
         .dresscode-main-title {
             font-family: 'Lighthaus', 'Quicksand', sans-serif;
             font-weight: 400;
             font-size: 42px;
             text-transform: uppercase;
             letter-spacing: 3px;
-            line-height: 1.2;
-            color: #121212;
             margin-bottom: 24px;
             opacity: 0;
             transform: translateY(30px);
@@ -371,9 +328,9 @@
             font-size: 12px;
             font-weight: 300;
             line-height: 1.7;
-            color: #555555;
+            color: #555;
             max-width: 340px;
-            margin: 0 auto 30px auto;
+            margin: 0 auto 30px;
             opacity: 0;
             transform: translateY(30px);
             transition: opacity 0.6s ease, transform 0.6s ease;
@@ -384,22 +341,21 @@
             font-size: 42px;
             color: #121212;
             margin-bottom: 35px;
-            letter-spacing: 1px;
             opacity: 0;
             transition: opacity 0.6s ease, transform 0.6s ease;
         }
         .section-subtitle.animate-left { transform: translateX(-30px); }
         .section-subtitle.animate-right { transform: translateX(30px); }
         .dresscode-main-title.visible, .dresscode-description.visible, .section-subtitle.visible { opacity: 1; transform: translate(0); }
-        .color-palette { display: block; margin: 0 auto 35px auto; font-size: 0; }
+        .color-palette { display: block; margin: 0 auto 35px; }
         .color-circle { display: inline-block; width: 32px; height: 32px; border-radius: 50%; margin: 0 6px; box-shadow: inset 0 0 1px rgba(0,0,0,0.1); }
         .color-1 { background-color: #6B705C; }
         .color-2 { background-color: #D8A7A8; }
         .color-3 { background-color: #EADBC6; }
         .color-4 { background-color: #b5b5b5; }
 
+        /* Мудборд */
         .moodboard { position: relative; width: 100%; height: 480px; margin-bottom: 60px; }
-        .moodboard:last-child { margin-bottom: 0; }
         .look-card {
             position: absolute;
             background-size: cover;
@@ -424,7 +380,8 @@
         .gents .card-left-top { width: 28%; height: 155px; left: -4%; top: 65px; z-index: 1; background-image: url('7.jpg'); }
         .gents .card-right-top { width: 34%; height: 200px; right: -6%; top: -10px; z-index: 4; background-image: url('8.jpg'); }
 
-        .wishes-screen { background: #ffffff; padding: 60px 20px 80px; }
+        /* Пожелания */
+        .wishes-screen { background: #fff; padding: 60px 20px 80px; }
         .wishes-container { max-width: 450px; margin: 0 auto; text-align: center; }
         .wishes-container .anim-element { opacity: 0; transition: opacity 0.6s ease, transform 0.6s ease; }
         .wishes-container .anim-element.visible { opacity: 1; transform: translate(0) !important; }
@@ -443,7 +400,7 @@
         .arrow-left { left: -5px; }
         .arrow-right { right: -5px; }
         .slider-arrow svg { width: 24px; height: 16px; fill: none; stroke: #121212; stroke-width: 1px; }
-        .wishes-vertical-divider { width: 1px; height: 90px; background-color: #b5b5b5; margin: 0 auto 45px auto; transform: scaleY(0); }
+        .wishes-vertical-divider { width: 1px; height: 90px; background-color: #b5b5b5; margin: 0 auto 45px; transform: scaleY(0); }
         .wishes-vertical-divider.visible { transform: scaleY(1); }
         .pre-closing { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 300; line-height: 1.6; color: #121212; margin-bottom: 45px; transform: translateY(30px); }
         .wishes-names-block { display: flex; flex-direction: column; align-items: center; margin-bottom: 55px; }
@@ -455,200 +412,38 @@
         .couple-photo-container.visible { opacity: 1; transform: translateY(0); }
         .couple-photo { width: 100%; aspect-ratio: 3 / 2; background-image: url('пара.jpg'); background-size: cover; background-position: center; background-color: #f5f5f5; }
 
-        .rsvp-screen {
-            background: #ffffff;
-            padding: 60px 20px;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
+        /* Анкета */
+        .rsvp-screen { background: #fff; padding: 60px 20px; opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
         .rsvp-screen.visible { opacity: 1; transform: translateY(0); }
-        .rsvp-container {
-            max-width: 500px;
-            margin: 0 auto;
-            background: #ffffff;
-            padding: 40px 30px;
-            box-shadow: none;
-        }
-        .rsvp-title {
-            font-family: 'Lighthaus', 'Quicksand', sans-serif;
-            font-size: 32px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: #1a1a1a;
-            margin-bottom: 12px;
-            text-align: center;
-        }
-        .rsvp-subtitle {
-            font-family: 'Pinyon Script', cursive;
-            font-size: 28px;
-            text-align: center;
-            color: #555;
-            margin-bottom: 40px;
-            border-bottom: 1px solid #eee;
-            display: inline-block;
-            width: 100%;
-            padding-bottom: 15px;
-        }
+        .rsvp-container { max-width: 500px; margin: 0 auto; background: #fff; padding: 40px 30px; }
+        .rsvp-title { font-family: 'Lighthaus', 'Quicksand', sans-serif; font-size: 32px; text-transform: uppercase; letter-spacing: 3px; color: #1a1a1a; margin-bottom: 12px; text-align: center; }
+        .rsvp-subtitle { font-family: 'Pinyon Script', cursive; font-size: 28px; text-align: center; color: #555; margin-bottom: 40px; border-bottom: 1px solid #eee; display: inline-block; width: 100%; padding-bottom: 15px; }
         .form-group { margin-bottom: 25px; }
-        .form-group label {
-            display: block;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-            color: #1a1a1a;
-        }
-        .form-group input, 
-        .form-group select {
-            width: 100%;
-            padding: 12px 0;
-            border: none;
-            border-bottom: 1px solid #ddd;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 16px;
-            background: transparent;
-            transition: border 0.2s ease;
-            outline: none;
-            color: #1a1a1a;
-        }
-        .form-group select option {
-            color: #1a1a1a;
-            background: #ffffff;
-        }
-        .form-group input:focus, 
-        .form-group select:focus {
-            border-bottom-color: #1a1a1a;
-        }
-        .form-group input::placeholder {
-            color: #aaa;
-        }
-        .radio-group {
-            display: flex;
-            gap: 25px;
-            margin-top: 8px;
-        }
-        .radio-group label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 400;
-            text-transform: none;
-            font-size: 14px;
-            color: #1a1a1a;
-        }
-        .radio-group input {
-            width: auto;
-            margin: 0;
-            accent-color: #1a1a1a;
-        }
-        .submit-btn {
-            display: block;
-            width: 100%;
-            background: #1a1a1a;
-            color: white;
-            border: none;
-            padding: 14px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            cursor: pointer;
-            margin-top: 30px;
-            transition: background 0.2s;
-        }
+        .form-group label { display: block; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; color: #1a1a1a; }
+        .form-group input, .form-group select { width: 100%; padding: 12px 0; border: none; border-bottom: 1px solid #ddd; font-family: 'Montserrat', sans-serif; font-size: 16px; background: transparent; outline: none; color: #1a1a1a; }
+        .form-group select option { color: #1a1a1a; background: #fff; }
+        .form-group input:focus, .form-group select:focus { border-bottom-color: #1a1a1a; }
+        .radio-group { display: flex; gap: 25px; margin-top: 8px; }
+        .radio-group label { display: flex; align-items: center; gap: 8px; font-weight: 400; text-transform: none; font-size: 14px; color: #1a1a1a; }
+        .radio-group input { width: auto; margin: 0; accent-color: #1a1a1a; }
+        .submit-btn { display: block; width: 100%; background: #1a1a1a; color: white; border: none; padding: 14px; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; margin-top: 30px; transition: background 0.2s; }
         .submit-btn:hover { background: #333; }
-        .hidden-message {
-            text-align: center;
-            margin-top: 20px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 12px;
-            color: #1a1a1a;
-            display: none;
-        }
+        .hidden-message { text-align: center; margin-top: 20px; font-family: 'Montserrat', sans-serif; font-size: 12px; color: #1a1a1a; display: none; }
 
-        .contacts-screen {
-            background: #ffffff;
-            padding: 60px 20px 80px;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
+        /* Контакты */
+        .contacts-screen { background: #fff; padding: 60px 20px 80px; opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
         .contacts-screen.visible { opacity: 1; transform: translateY(0); }
-        .contacts-container {
-            max-width: 450px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        .contacts-title {
-            font-family: 'Lighthaus', 'Quicksand', sans-serif;
-            font-size: 32px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: #1a1a1a;
-            margin-bottom: 15px;
-            font-weight: 400;
-        }
-        .contacts-subtitle {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 13px;
-            font-weight: 300;
-            letter-spacing: 1px;
-            color: #777;
-            margin-bottom: 50px;
-            text-transform: none;
-        }
-        .contacts-list {
-            display: flex;
-            flex-direction: column;
-            gap: 28px;
-            margin-bottom: 45px;
-        }
-        .contact-row {
-            display: flex;
-            justify-content: center;
-            align-items: baseline;
-            flex-wrap: wrap;
-            gap: 8px 20px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 14px;
-            letter-spacing: 0.3px;
-        }
-        .contact-role {
-            font-weight: 500;
-            color: #1a1a1a;
-            text-transform: uppercase;
-            font-size: 11px;
-            letter-spacing: 1.5px;
-        }
-        .contact-info {
-            font-weight: 300;
-            color: #333;
-        }
-        .contact-info a {
-            color: #333;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-        .contact-info a:hover {
-            color: #6B705C;
-        }
-        .contacts-divider {
-            width: 1px;
-            height: 50px;
-            background-color: #d0d0d0;
-            margin: 0 auto 35px;
-        }
-        .contacts-copyright {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 10px;
-            letter-spacing: 1.5px;
-            color: #aaa;
-            text-transform: uppercase;
-        }
+        .contacts-container { max-width: 450px; margin: 0 auto; text-align: center; }
+        .contacts-title { font-family: 'Lighthaus', 'Quicksand', sans-serif; font-size: 32px; text-transform: uppercase; letter-spacing: 3px; color: #1a1a1a; margin-bottom: 15px; font-weight: 400; }
+        .contacts-subtitle { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 300; letter-spacing: 1px; color: #777; margin-bottom: 50px; }
+        .contacts-list { display: flex; flex-direction: column; gap: 28px; margin-bottom: 45px; }
+        .contact-row { display: flex; justify-content: center; align-items: baseline; flex-wrap: wrap; gap: 8px 20px; font-family: 'Montserrat', sans-serif; font-size: 14px; }
+        .contact-role { font-weight: 500; color: #1a1a1a; text-transform: uppercase; font-size: 11px; letter-spacing: 1.5px; }
+        .contact-info { font-weight: 300; color: #333; }
+        .contact-info a { color: #333; text-decoration: none; transition: color 0.2s; }
+        .contact-info a:hover { color: #6B705C; }
+        .contacts-divider { width: 1px; height: 50px; background-color: #d0d0d0; margin: 0 auto 35px; }
+        .contacts-copyright { font-family: 'Montserrat', sans-serif; font-size: 10px; letter-spacing: 1.5px; color: #aaa; text-transform: uppercase; }
 
         @media (max-width: 768px) {
             .name-line { font-size: 3.4rem; }
@@ -659,12 +454,10 @@
         @media (max-width: 580px) {
             .name-line { font-size: 2.8rem; }
             .ekaterina-name { margin-left: 86px; }
-            .section-subtitle { font-size: 32px; }
         }
         @media (max-width: 480px) {
             .name-line { font-size: 2.4rem; }
             .ekaterina-name { margin-left: 74px; }
-            .section-subtitle { font-size: 28px; }
             .contact-row { flex-direction: column; align-items: center; gap: 6px; }
         }
     </style>
@@ -714,7 +507,7 @@
 <div class="location-section" id="locationSection">
     <div class="location-bg"></div>
     <div class="location-card">
-        <div class="icon-scene"><svg class="location-svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#1a1a1a"/></svg></div>
+        <div class="icon-scene"><svg viewBox="0 0 24 24" width="40" height="40"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#1a1a1a"/></svg></div>
         <h2 class="location-title">МЕСТО<br>ПРОВЕДЕНИЯ</h2>
         <div class="save-the-place">Save the place!</div>
         <p class="venue-name">Замок "Мечта"<br>Ресторанный комплекс</p>
@@ -824,16 +617,56 @@
 
 <script>
     (function() {
-        // Анимация первого экрана - запускаем сразу
-        setTimeout(() => document.getElementById('photoBg')?.classList.add('visible'), 100);
-        setTimeout(() => document.getElementById('weddingScript')?.classList.add('visible'), 300);
-        setTimeout(() => document.getElementById('artemName')?.classList.add('visible'), 600);
-        setTimeout(() => document.getElementById('ekaterinaName')?.classList.add('visible'), 900);
-        setTimeout(() => document.getElementById('ampersand')?.classList.add('visible'), 1200);
+        // Анимация первого экрана - запускаем сразу после загрузки
+        setTimeout(() => {
+            document.getElementById('photoBg')?.classList.add('visible');
+        }, 100);
+        setTimeout(() => {
+            document.getElementById('weddingScript')?.classList.add('visible');
+        }, 400);
+        setTimeout(() => {
+            document.getElementById('artemName')?.classList.add('visible');
+        }, 700);
+        setTimeout(() => {
+            document.getElementById('ekaterinaName')?.classList.add('visible');
+        }, 1000);
+        setTimeout(() => {
+            document.getElementById('ampersand')?.classList.add('visible');
+        }, 1300);
         
-        // Упрощённая функция наблюдения за элементами
+        // Анимация ВТОРОГО ЭКРАНА - запускаем через 1.5 секунды после загрузки страницы
+        // чтобы анимация началась без необходимости скроллить
+        setTimeout(() => {
+            const title = document.querySelector('.title');
+            const saveDate = document.querySelector('.save-the-date');
+            const desc = document.querySelector('.description-text');
+            const lineTop = document.querySelector('.line-top');
+            const lineBottom = document.querySelector('.line-bottom');
+            const dateNumbers = document.querySelectorAll('.date-number');
+            const dots = document.querySelectorAll('.dot');
+            const calendar = document.querySelector('.calendar-section');
+            
+            if (title) title.classList.add('visible');
+            setTimeout(() => { if (saveDate) saveDate.classList.add('visible'); }, 100);
+            setTimeout(() => { if (desc) desc.classList.add('visible'); }, 200);
+            setTimeout(() => { if (lineTop) lineTop.classList.add('visible'); }, 300);
+            setTimeout(() => { 
+                dateNumbers.forEach(el => el.classList.add('visible'));
+                dots.forEach(el => el.classList.add('visible'));
+            }, 500);
+            setTimeout(() => { if (lineBottom) lineBottom.classList.add('visible'); }, 700);
+            setTimeout(() => { if (calendar) calendar.classList.add('visible'); }, 900);
+        }, 1500);
+        
+        // Функция для наблюдения за остальными блоками при скролле
         function observeOnScroll(element, className = 'visible', threshold = 0.2) {
             if (!element) return;
+            // Проверяем, может элемент уже виден
+            const rect = element.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 100) {
+                element.classList.add(className);
+                return;
+            }
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -845,37 +678,20 @@
             observer.observe(element);
         }
         
-        // Наблюдаем за всеми секциями и элементами
-        
-        // Второй экран - каждый элемент отдельно
-        observeOnScroll(document.querySelector('.title'), 'visible', 0.2);
-        observeOnScroll(document.querySelector('.save-the-date'), 'visible', 0.2);
-        observeOnScroll(document.querySelector('.description-text'), 'visible', 0.2);
-        observeOnScroll(document.querySelector('.line-top'), 'visible', 0.2);
-        observeOnScroll(document.querySelector('.line-bottom'), 'visible', 0.2);
-        observeOnScroll(document.querySelector('.calendar-section'), 'visible', 0.2);
-        
-        // Дата числа
-        document.querySelectorAll('.date-number').forEach(el => observeOnScroll(el, 'visible', 0.2));
-        document.querySelectorAll('.dot').forEach(el => observeOnScroll(el, 'visible', 0.2));
-        
-        // Локация
+        // Наблюдаем за остальными блоками
         observeOnScroll(document.getElementById('locationSection'), 'visible', 0.3);
-        
-        // Тайминг
         observeOnScroll(document.querySelector('.timeline-container'), 'visible', 0.3);
-        document.querySelectorAll('.timeline-item').forEach(el => observeOnScroll(el, 'visible', 0.2));
         
-        // Дресс-код заголовки
+        document.querySelectorAll('.timeline-item').forEach(el => observeOnScroll(el, 'visible', 0.2));
         observeOnScroll(document.getElementById('dresscodeMainTitle'), 'visible', 0.3);
         observeOnScroll(document.getElementById('dresscodeDescription'), 'visible', 0.3);
         observeOnScroll(document.getElementById('ladiesSubtitle'), 'visible', 0.3);
         observeOnScroll(document.getElementById('gentsSubtitle'), 'visible', 0.3);
         
-        // Карточки moodboard
+        // Карточки мудборда
         document.querySelectorAll('.look-card').forEach(card => observeOnScroll(card, 'visible-card', 0.2));
         
-        // Пожелания - все элементы с классом anim-element
+        // Пожелания
         document.querySelectorAll('.anim-element').forEach(el => observeOnScroll(el, 'visible', 0.3));
         observeOnScroll(document.getElementById('finalPhoto'), 'visible', 0.3);
         
@@ -883,7 +699,7 @@
         observeOnScroll(document.getElementById('rsvpScreen'), 'visible', 0.2);
         observeOnScroll(document.getElementById('contactsScreen'), 'visible', 0.2);
         
-        // Кнопка прокрутки вниз - используем простой скролл без smooth для отзывчивости
+        // Кнопка прокрутки
         document.getElementById('scrollBtn')?.addEventListener('click', (e) => {
             e.preventDefault();
             const secondScreen = document.getElementById('secondScreen');
